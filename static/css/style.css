@@ -13,21 +13,112 @@ body {
   text-align: center;
   background: white;
   padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  width: 320px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  width: min(420px, 92vw);
 }
 
-.timer #time-display {
-  font-size: 48px;
-  margin-bottom: 1rem;
+.progress-wrapper {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  margin: 0 auto 1rem auto;
+}
+
+.progress-ring {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ring-bg {
+  transition: stroke 200ms ease;
+}
+
+.ring-progress {
+  stroke-dasharray: 326; /* 2 * PI * r (approx) */
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 200ms linear;
+}
+
+.time-display {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
 }
 
 .controls button {
-  margin: 0 0.25rem;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
+  background: #0078d4;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.controls button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button:focus {
+  outline: 3px solid rgba(0,120,212,0.25);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .progress-wrapper { width: 180px; height: 180px; }
+  .time-display { font-size: 28px; }
+}
+
+.settings {
+  margin-top: 1rem;
+}
+
+.presets {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.preset-button {
+  background: #eee;
+  border: 1px solid #ddd;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  min-width: 72px;
+  font-weight: 600;
+}
+
+.preset-button[aria-checked="true"] {
   background: #0078d4;
   color: white;
 }
+
+.custom {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.custom input[type="number"] {
+  width: 72px;
+  padding: 0.4rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.visually-hidden, .sr { position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px, 1px, 1px, 1px); white-space:nowrap }

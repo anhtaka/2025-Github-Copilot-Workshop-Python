@@ -9,13 +9,35 @@
   <body>
     <main class="container">
       <h1>Pomodoro Timer</h1>
-      <div id="timer" class="timer">
-        <div id="time-display">25:00</div>
-        <div class="controls">
-          <button id="start-btn">Start</button>
-          <button id="pause-btn">Pause</button>
-          <button id="reset-btn">Reset</button>
+      <div id="timer" class="timer" role="application" aria-label="Pomodoro timer">
+        <div class="progress-wrapper">
+          <svg class="progress-ring" width="240" height="240" viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="ring-bg" cx="60" cy="60" r="52" fill="none" stroke="#eee" stroke-width="12" />
+            <circle class="ring-progress" cx="60" cy="60" r="52" fill="none" stroke="#0078d4" stroke-width="12" stroke-linecap="round" transform="rotate(-90 60 60)" />
+          </svg>
+          <div id="time-display" class="time-display" role="status" aria-live="polite">25:00</div>
         </div>
+
+        <div class="controls" role="group" aria-label="Timer controls">
+          <button id="start-btn" type="button">Start</button>
+          <button id="pause-btn" type="button">Pause</button>
+          <button id="reset-btn" type="button">Reset</button>
+        </div>
+        
+        <section class="settings" aria-label="Timer settings">
+          <h2 class="visually-hidden">Timer settings</h2>
+          <div class="presets" role="radiogroup" aria-label="Preset durations">
+            <button class="preset-button" data-minutes="25" role="radio" aria-checked="true">Pomodoro<br><small>25:00</small></button>
+            <button class="preset-button" data-minutes="5" role="radio" aria-checked="false">Short<br><small>5:00</small></button>
+            <button class="preset-button" data-minutes="15" role="radio" aria-checked="false">Long<br><small>15:00</small></button>
+          </div>
+
+          <form id="custom-form" class="custom" onsubmit="return false;" aria-label="Custom duration">
+            <label for="custom-minutes" class="sr">Custom minutes</label>
+            <input id="custom-minutes" type="number" min="1" max="240" value="25" aria-label="Custom minutes">
+            <button id="custom-set" type="button">Set</button>
+          </form>
+        </section>
       </div>
     </main>
 
