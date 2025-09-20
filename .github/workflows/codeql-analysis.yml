@@ -14,10 +14,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Debug - list C/C++ files (if any)
+        run: |
+          echo "Looking for C/C++ source files in repository..."
+          git ls-files '*.c' '*.cpp' '*.cc' '*.cxx' '*.h' '*.hpp' || true
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
-          languages: javascript,python
+          languages: [ 'javascript', 'python' ]
+          # Explicitly list languages to avoid auto-detection including C/C++
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
