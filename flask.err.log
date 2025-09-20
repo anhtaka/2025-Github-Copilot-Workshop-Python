@@ -1,0 +1,20 @@
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 315-522-251
+127.0.0.1 - - [20/Sep/2025 21:56:10] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/Sep/2025 21:56:10] "GET /static/js/timer-ui.js HTTP/1.1" 304 -
+127.0.0.1 - - [20/Sep/2025 21:56:10] "GET /static/css/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [20/Sep/2025 21:56:10] "GET /static/js/timer-core.js HTTP/1.1" 304 -
+127.0.0.1 - - [20/Sep/2025 21:56:15] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/Sep/2025 21:56:15] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/Sep/2025 22:14:38] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/Sep/2025 22:14:38] "GET /static/css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [20/Sep/2025 22:14:38] "GET /static/js/timer-ui.js HTTP/1.1" 200 -
+127.0.0.1 - - [20/Sep/2025 22:14:38] "GET /static/js/timer-core.js HTTP/1.1" 304 -
+127.0.0.1 - - [20/Sep/2025 22:20:44] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/Sep/2025 22:20:44] "GET /static/css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [20/Sep/2025 22:20:44] "GET /static/js/timer-ui.js HTTP/1.1" 200 -
+127.0.0.1 - - [20/Sep/2025 22:20:44] "GET /static/js/timer-core.js HTTP/1.1" 304 -
