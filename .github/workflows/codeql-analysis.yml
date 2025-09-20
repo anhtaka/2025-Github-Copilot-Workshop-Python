@@ -17,6 +17,7 @@ on:
       - 'templates/**'
       - 'static/**'
       - '.github/workflows/**'
+  workflow_dispatch: {}
 
 jobs:
   codeql:
@@ -26,16 +27,51 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Detect languages in repository
+        id: detect
+        run: |
+          echo "Detecting source file types..."
+          has_py=$(git ls-files '*.py' | wc -l)
+          has_js=$(git ls-files '*.js' | wc -l)
+          has_cpp=$(git ls-files '*.c' '*.cpp' '*.cc' '*.cxx' '*.h' '*.hpp' | wc -l)
+          languages=""
+          if [ "$has_js" -gt 0 ]; then
+            languages="javascript"
+          fi
+          if [ "$has_py" -gt 0 ]; then
+            if [ -n "$languages" ]; then
+              languages="${languages},python"
+            else
+              languages="python"
+            fi
+          fi
+          if [ "$has_cpp" -gt 0 ]; then
+            if [ -n "$languages" ]; then
+              languages="${languages},cpp"
+            else
+              languages="cpp"
+            fi
+          fi
+          echo "Found counts: py=$has_py js=$has_js cpp=$has_cpp"
+          echo "languages=$languages" >> $GITHUB_OUTPUT
+
       - name: Debug - list C/C++ files (if any)
         run: |
           echo "Looking for C/C++ source files in repository..."
           git ls-files '*.c' '*.cpp' '*.cc' '*.cxx' '*.h' '*.hpp' || true
 
+      - name: Debug - show detected languages
+        run: |
+          echo "Detected languages (from step 'detect'): ${{ steps.detect.outputs.languages }}"
+
       - name: Initialize CodeQL
+        if: steps.detect.outputs.languages != ''
         uses: github/codeql-action/init@v2
         with:
-          languages: [ 'javascript', 'python' ]
-          # Explicitly list languages to avoid auto-detection including C/C++
+          # Pass the languages string detected above (comma-separated). This avoids including
+          # C/C++ unless C/C++ files are actually present in the repo.
+          languages: ${{ steps.detect.outputs.languages }}
 
       - name: Perform CodeQL Analysis
+        if: steps.detect.outputs.languages != ''
         uses: github/codeql-action/analyze@v3
