@@ -18,3 +18,11 @@ Press CTRL+C to quit
 127.0.0.1 - - [20/Sep/2025 22:20:44] "GET /static/css/style.css HTTP/1.1" 200 -
 127.0.0.1 - - [20/Sep/2025 22:20:44] "GET /static/js/timer-ui.js HTTP/1.1" 200 -
 127.0.0.1 - - [20/Sep/2025 22:20:44] "GET /static/js/timer-core.js HTTP/1.1" 304 -
+ * Detected change in 'C:\\Code\\2025-Github-Copilot-Workshop-Python\\.venv\\lib\\site-packages\\colorama\\win32.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 315-522-251
+ * Detected change in 'C:\\Code\\2025-Github-Copilot-Workshop-Python\\.venv\\lib\\site-packages\\werkzeug\\exceptions.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 315-522-251
